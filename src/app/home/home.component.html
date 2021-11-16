@@ -1,0 +1,14 @@
+<div class="todo-form">
+    <span *ngIf="!formData.valid">Please Enter Value</span>
+    <div>
+        <h2>Todo List</h2>
+        <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="" formControlName="name">
+                <button class="btn btn-primary" type="submit">Submit</button> 
+            </div>
+        </form>
+    </div>
+    <br>
+    <app-list #list></app-list>
+</div>
