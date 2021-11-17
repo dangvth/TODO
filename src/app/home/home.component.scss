@@ -4,5 +4,21 @@
     max-width: 600px;
     // align-content: center;
     text-align: center;
-    margin: 0 auto;
+    margin: 100px auto;
+    background-color: cornsilk;
+}
+
+button {
+    min-width: 70px;
+}
+
+.alert {
+    margin-bottom: 1px;
+    height: 30px;
+    line-height:30px;
+    padding:0px 15px;
+  }
+
+.formMargin {
+    margin-top: 20px;
 }

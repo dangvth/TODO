@@ -16,7 +16,12 @@ export class APIService {
   constructor(private httpClient: HttpClient) { }
 
   public getTodos(): Observable<any> {
-    const url = `${this.REST_API_SERVER}/todos`; 
+    const url = `${this.REST_API_SERVER}/todos?_sort=id&_order=desc`; 
+    return this.httpClient.get<any>(url, this.httpOptions);
+  }
+
+  public getTodo(id: number): Observable<any> {
+    const url = `${this.REST_API_SERVER}/todos/` + id; 
     return this.httpClient.get<any>(url, this.httpOptions);
   }
 
@@ -28,5 +33,10 @@ export class APIService {
   public updateTodo(id: number, todo: any): Observable<any> {
     const url = `${this.REST_API_SERVER}/todos/` + id; 
     return this.httpClient.put<any>(url, todo, this.httpOptions);
+  }
+
+  public deleteTodo(id: number): Observable<any> {
+    const url = `${this.REST_API_SERVER}/todos/` + id; 
+    return this.httpClient.delete<any>(url, this.httpOptions);
   }
 }

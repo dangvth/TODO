@@ -1,17 +1,18 @@
-<div>
-    <table class="table table-hover">
+<div *ngIf="todos.length != 0">
+    <table  class="table table-hover table-sm">
         <tbody>
         <tr *ngFor="let todo of todos">
             <td class="left">{{ todo.name | titlecase}}</td>
             <td class="right">
-                <button class="btn btn-outline-warning btn-sm space">
+                <button (click)="onEdit(todo.id)" class="btn btn-outline-warning btn-sm space">
                     <fa-icon [icon]="faEdit"></fa-icon>
                 </button>
-                <button class="btn btn-outline-danger btn-sm">
+                <button (click)="onDelete(todo.id)" class="btn btn-outline-danger btn-sm">
                     <fa-icon [icon]="faTrash"></fa-icon>
                 </button>
             </td>
         </tr>
         </tbody>
     </table>
+    <button (click)="onClear()" class="btn btn-outline-danger btn-sm">Clear Items</button>
 </div>

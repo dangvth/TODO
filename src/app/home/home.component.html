@@ -1,14 +1,27 @@
 <div class="todo-form">
-    <span *ngIf="!formData.valid">Please Enter Value</span>
-    <div>
+    <div *ngIf="message.msg != '' && message.style == 'success'" class="alert alert-success">
+        {{ message.msg | titlecase}}
+    </div>
+   
+    <div *ngIf="message.msg != '' && message.style == 'danger'" class="alert alert-danger">
+        {{ message.msg | titlecase}}
+    </div>
+   
+    <div class="formMargin">
         <h2>Todo List</h2>
-        <form [formGroup]="formData" (ngSubmit)="onSubmit()">
-            <div class="input-group mb-3">
+        <form *ngIf="!editForm" [formGroup]="formData" (ngSubmit)="onSubmit()">
+            <div class="input-group mb-3 input-group-sm">
                 <input type="text" class="form-control" placeholder="" formControlName="name">
-                <button class="btn btn-primary" type="submit">Submit</button> 
+                <button class="btn btn-primary btn-sm" type="submit">Submit</button> 
+            </div>
+        </form>
+        <form *ngIf="editForm" [formGroup]="formData" (ngSubmit)="onEdit(editId)">
+            <div class="input-group mb-3 input-group-sm">
+                <input type="text" class="form-control" placeholder="" formControlName="name">
+                <button class="btn btn-primary btn-sm" type="submit">Edit</button> 
             </div>
         </form>
     </div>
     <br>
-    <app-list #list></app-list>
+    <app-list #list (clearCall)="onClear($event)" (editCall)="binding($event)" (deleteCall)="onDelete($event)"></app-list>
 </div>
